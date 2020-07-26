@@ -1,10 +1,27 @@
+from enum import Enum, unique
 import string
+
+
+@unique
+class Gender(Enum):
+    MALE = 1
+    FEMALE = 2
+    UNKNOWN = 3
 
 
 class CNP:
     def __init__(self, cnp):
         if not self.has_cnp_format(cnp):
             raise ValueError
+        self.__cnp = cnp
+
+    @property
+    def gender(self):
+        if self.__cnp[0] == '9':
+            return Gender.UNKNOWN
+        if int(self.__cnp[0]) % 2 == 1:
+            return Gender.MALE
+        return Gender.FEMALE
 
     @staticmethod
     def has_cnp_format(cnp):
