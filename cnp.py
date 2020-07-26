@@ -23,6 +23,14 @@ class CNP:
             return Gender.MALE
         return Gender.FEMALE
 
+    @property
+    def century(self):
+        if self.__cnp[0] in '34':
+            return 19
+        if self.__cnp[0] in '56':
+            return 21
+        return 20
+
     @staticmethod
     def has_cnp_format(cnp):
         if len(cnp) != 13:

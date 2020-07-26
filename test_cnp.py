@@ -26,3 +26,14 @@ class TestCNP:
         assert CNP('8234567890123').gender == Gender.FEMALE
         assert CNP('9234567890123').gender == Gender.UNKNOWN
 
+    def test_century(self):
+        assert CNP('1234567890123').century == 20
+        assert CNP('2234567890123').century == 20
+        assert CNP('3234567890123').century == 19
+        assert CNP('4234567890123').century == 19
+        assert CNP('5234567890123').century == 21
+        assert CNP('6234567890123').century == 21
+        assert CNP('7234567890123').century == 20
+        assert CNP('8234567890123').century == 20
+        assert CNP('9234567890123').century == 20
+
