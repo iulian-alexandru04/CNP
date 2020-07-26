@@ -22,6 +22,8 @@ class CNP:
             raise ValueError('invalid county code')
         if cnp[9:12] == '000':
             raise ValueError
+        if int(cnp[-1]) != self.__compute_control():
+            raise ValueError('expected ctrl: %s' % my_ctrl)
 
     @property
     def gender(self):
@@ -66,6 +68,11 @@ class CNP:
             if d not in string.digits:
                 return False
         return True
+
+    def __compute_control(self):
+        total = sum(int(x) * int(y) for x, y in zip(self.__cnp, '279146358279'))
+        control = total % 11
+        return 1 if control == 10 else control
 
 counties = ['Alba', 'Arad', 'Argeș', 'Bacău', 'Bihor', 'Bistrița-Năsăud', 'Botoșani', 'Brașov', 
             'Brăila', 'Buzău', 'Caraș-Severin', 'Cluj', 'Constanța', 'Covasna', 'Dâmbovița', 
