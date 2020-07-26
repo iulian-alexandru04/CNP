@@ -17,6 +17,9 @@ class CNP:
         self.__cnp = cnp
         if date.today() < date(self.year, self.month, self.day):
             raise ValueError('birth date is in the future')
+        county_idx = self.__get_county_index()
+        if county_idx < 1 or county_idx > 52:
+            raise ValueError('invalid county code')
 
     @property
     def gender(self):
@@ -46,6 +49,13 @@ class CNP:
     def day(self):
         return int(self.__cnp[5:7])
 
+    def __get_county_index(self):
+        return int(self.__cnp[7:9])
+
+    @property
+    def county(self):
+        return counties[self.__get_county_index() - 1]
+
     @staticmethod
     def has_cnp_format(cnp):
         if len(cnp) != 13:
@@ -55,3 +65,10 @@ class CNP:
                 return False
         return True
 
+counties = ['Alba', 'Arad', 'Argeș', 'Bacău', 'Bihor', 'Bistrița-Năsăud', 'Botoșani', 'Brașov', 
+            'Brăila', 'Buzău', 'Caraș-Severin', 'Cluj', 'Constanța', 'Covasna', 'Dâmbovița', 
+            'Dolj', 'Galați', 'Gorj', 'Harghita', 'Hunedoara', 'Ialomița', 'Iași', 'Ilfov', 
+            'Maramureș', 'Mehedinți', 'Mureș', 'Neamț', 'Olt', 'Prahova', 'Satu Mare', 'Sălaj', 
+            'Sibiu', 'Suceava', 'Teleorman', 'Timiș', 'Tulcea', 'Vaslui', 'Vâlcea', 'Vrancea', 
+            'București', 'București Sector 1', 'București Sector 2', 'București Sector 3', 
+            'București Sector 4', 'București Sector 5', 'București Sector 6', 'Călărași', 'Giurgiu']

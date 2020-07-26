@@ -9,50 +9,50 @@ class TestCNP:
         assert CNP.has_cnp_format('1234567890123')
 
     def test_valid_init(self):
-        CNP('2230427890123')
+        CNP('2230427290123')
 
     def test_invalid_init(self):
         with pytest.raises(ValueError):
             CNP('abcxy')
 
     def test_gender(self):
-        assert CNP('1230517890123').gender == Gender.MALE
-        assert CNP('3230517890123').gender == Gender.MALE
-        assert CNP('5130517890123').gender == Gender.MALE
-        assert CNP('7230517890123').gender == Gender.MALE
-        assert CNP('2230517890123').gender == Gender.FEMALE
-        assert CNP('4230517890123').gender == Gender.FEMALE
-        assert CNP('6120517890123').gender == Gender.FEMALE
-        assert CNP('8230517890123').gender == Gender.FEMALE
-        assert CNP('9230517890123').gender == Gender.UNKNOWN
+        assert CNP('1230517390123').gender == Gender.MALE
+        assert CNP('3230517390123').gender == Gender.MALE
+        assert CNP('5130517390123').gender == Gender.MALE
+        assert CNP('7230517390123').gender == Gender.MALE
+        assert CNP('2230517390123').gender == Gender.FEMALE
+        assert CNP('4230517390123').gender == Gender.FEMALE
+        assert CNP('6120517390123').gender == Gender.FEMALE
+        assert CNP('8230517390123').gender == Gender.FEMALE
+        assert CNP('9230517390123').gender == Gender.UNKNOWN
 
     def test_century(self):
-        assert CNP('1230807890123').century == 20
-        assert CNP('2230807890123').century == 20
-        assert CNP('3230807890123').century == 19
-        assert CNP('4230807890123').century == 19
-        assert CNP('5180807890123').century == 21
-        assert CNP('6100807890123').century == 21
-        assert CNP('7230807890123').century == 20
-        assert CNP('8230807890123').century == 20
-        assert CNP('9230807890123').century == 20
+        assert CNP('1230807030123').century == 20
+        assert CNP('2230807030123').century == 20
+        assert CNP('3230807030123').century == 19
+        assert CNP('4230807030123').century == 19
+        assert CNP('5180807030123').century == 21
+        assert CNP('6100807030123').century == 21
+        assert CNP('7230807030123').century == 20
+        assert CNP('8230807030123').century == 20
+        assert CNP('9230807030123').century == 20
 
     def test_year(self):
-        assert CNP('7711105890123').year == 1971
+        assert CNP('7711105120123').year == 1971
 
     def test_month(self):
-        assert CNP('1230517890123').month == 5
+        assert CNP('1230517120123').month == 5
 
     def test_day(self):
-        assert CNP('1230520890123').day == 20
+        assert CNP('1230520120123').day == 20
 
     def test_invalid_month(self):
         with pytest.raises(ValueError):
-            CNP('1231520890123')
+            CNP('1231520120123')
 
     def test_invalid_day_over_31(self):
         with pytest.raises(ValueError):
-            CNP('2931133890123')
+            CNP('2931133120123')
 
     def test_day_31_for_months_with_less(self):
         with pytest.raises(ValueError):
@@ -81,11 +81,19 @@ class TestCNP:
             CNP('2000229000123')
 
     def test_29_february_for_leap_yars(self):
-            CNP('3040229000123')
-            CNP('6000229000123')
+            CNP('3040229020123')
+            CNP('6000229020123')
 
     def test_future_dates(self):
         with pytest.raises(ValueError):
             CNP('5970519000123')
 
+    def test_invalid_counties(self):
+        with pytest.raises(ValueError):
+            assert CNP('1970519000123')
+        with pytest.raises(ValueError):
+            assert CNP('1970519530123')
+
+    def test_county(self):
+        assert CNP('1970519430123').county == 'București Sector 3'
 
