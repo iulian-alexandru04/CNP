@@ -40,3 +40,6 @@ class TestCNP:
     def test_year(self):
         assert CNP('7714567890123').year == 1971
 
+    def test_month(self):
+        assert CNP('1230567890123').month == 5
+
