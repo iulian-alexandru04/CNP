@@ -18,11 +18,11 @@ class TestCNP:
     def test_gender(self):
         assert CNP('1230517890123').gender == Gender.MALE
         assert CNP('3230517890123').gender == Gender.MALE
-        assert CNP('5230517890123').gender == Gender.MALE
+        assert CNP('5130517890123').gender == Gender.MALE
         assert CNP('7230517890123').gender == Gender.MALE
         assert CNP('2230517890123').gender == Gender.FEMALE
         assert CNP('4230517890123').gender == Gender.FEMALE
-        assert CNP('6230517890123').gender == Gender.FEMALE
+        assert CNP('6120517890123').gender == Gender.FEMALE
         assert CNP('8230517890123').gender == Gender.FEMALE
         assert CNP('9230517890123').gender == Gender.UNKNOWN
 
@@ -31,8 +31,8 @@ class TestCNP:
         assert CNP('2230807890123').century == 20
         assert CNP('3230807890123').century == 19
         assert CNP('4230807890123').century == 19
-        assert CNP('5230807890123').century == 21
-        assert CNP('6230807890123').century == 21
+        assert CNP('5180807890123').century == 21
+        assert CNP('6100807890123').century == 21
         assert CNP('7230807890123').century == 20
         assert CNP('8230807890123').century == 20
         assert CNP('9230807890123').century == 20
@@ -83,4 +83,9 @@ class TestCNP:
     def test_29_february_for_leap_yars(self):
             CNP('3040229000123')
             CNP('6000229000123')
+
+    def test_future_dates(self):
+        with pytest.raises(ValueError):
+            CNP('5970519000123')
+
 

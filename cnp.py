@@ -1,5 +1,5 @@
 from enum import Enum, unique
-import datetime
+from datetime import date
 import string
 
 
@@ -13,9 +13,10 @@ class Gender(Enum):
 class CNP:
     def __init__(self, cnp):
         if not self.has_cnp_format(cnp):
-            raise ValueError
+            raise ValueError('wrong format')
         self.__cnp = cnp
-        datetime.date(self.year, self.month, self.day)
+        if date.today() < date(self.year, self.month, self.day):
+            raise ValueError('birth date is in the future')
 
     @property
     def gender(self):
