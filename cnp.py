@@ -23,7 +23,7 @@ class CNP:
         if cnp[9:12] == '000':
             raise ValueError
         if int(cnp[-1]) != self.__compute_control():
-            raise ValueError('expected ctrl: %s' % my_ctrl)
+            raise ValueError
 
     @property
     def gender(self):
