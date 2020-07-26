@@ -1,4 +1,5 @@
 from enum import Enum, unique
+import datetime
 import string
 
 
@@ -14,6 +15,7 @@ class CNP:
         if not self.has_cnp_format(cnp):
             raise ValueError
         self.__cnp = cnp
+        datetime.date(self.year, self.month, self.day)
 
     @property
     def gender(self):
