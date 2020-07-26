@@ -39,6 +39,10 @@ class CNP:
     def month(self):
         return int(self.__cnp[3:5])
 
+    @property
+    def day(self):
+        return int(self.__cnp[5:7])
+
     @staticmethod
     def has_cnp_format(cnp):
         if len(cnp) != 13:

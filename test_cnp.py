@@ -43,3 +43,6 @@ class TestCNP:
     def test_month(self):
         assert CNP('1230567890123').month == 5
 
+    def test_day(self):
+        assert CNP('1230520890123').day == 20
+
