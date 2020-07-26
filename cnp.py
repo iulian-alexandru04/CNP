@@ -20,6 +20,8 @@ class CNP:
         county_idx = self.__get_county_index()
         if county_idx < 1 or county_idx > 52:
             raise ValueError('invalid county code')
+        if cnp[9:12] == '000':
+            raise ValueError
 
     @property
     def gender(self):

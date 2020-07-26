@@ -97,3 +97,7 @@ class TestCNP:
     def test_county(self):
         assert CNP('1970519430123').county == 'București Sector 3'
 
+    def test_invalid_salt_number(self):
+        with pytest.raises(ValueError):
+            assert CNP('1970519250003')
+
