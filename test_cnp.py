@@ -37,3 +37,6 @@ class TestCNP:
         assert CNP('8234567890123').century == 20
         assert CNP('9234567890123').century == 20
 
+    def test_year(self):
+        assert CNP('7714567890123').year == 1971
+

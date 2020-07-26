@@ -31,6 +31,10 @@ class CNP:
             return 21
         return 20
 
+    @property
+    def year(self):
+        return (self.century - 1) * 100 + int(self.__cnp[1:3])
+
     @staticmethod
     def has_cnp_format(cnp):
         if len(cnp) != 13:
